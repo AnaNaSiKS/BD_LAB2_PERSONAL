@@ -42,5 +42,9 @@ namespace BD_LAB2_PERSONAL
             db.SaveChanges();
         }
 
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

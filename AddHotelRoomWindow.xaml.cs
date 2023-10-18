@@ -23,5 +23,26 @@ namespace BD_LAB2_PERSONAL
         {
             InitializeComponent();
         }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            HotelRoom room = new HotelRoom { 
+                NumberId = Convert.ToInt64(TextBoxNumberId.Text),
+                NumberName = TextBoxNumberName.Text,
+                Capacity = Convert.ToInt64(TextBoxCapacity.Text),
+                Description = TextBoxDescription.Text,
+                Price = Convert.ToInt64(TextBoxPrice.Text),
+                EmplsId = Convert.ToInt64(TextBoxEmplId.Text)
+            };
+
+            var db = new HostelDataBaseContext();
+            db.HotelRooms.Add(room);
+            db.SaveChanges();
+        }
+
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

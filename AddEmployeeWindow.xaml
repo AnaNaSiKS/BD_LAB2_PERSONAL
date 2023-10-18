@@ -85,7 +85,8 @@
                 MinWidth="50"
                 Background="Red"
                 HorizontalAlignment="Left"
-                Margin="5">
+                Margin="5"
+                Name="ButtonClose" Click="ButtonClose_Click">
                 <materialDesign:PackIcon Kind="Close" />
             </Button>
         </DockPanel>

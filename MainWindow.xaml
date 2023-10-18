@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD_LAB2_PERSONAL"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -14,17 +15,24 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    
 
+                    <DataGrid Margin="5" Name="DataGridEmloyees"></DataGrid>
                     <DockPanel Grid.Row="1">
                         <Button Width="200"
+                                Height="50"
                                 Margin="5"
                                 HorizontalAlignment="Left"
                                 Content="Добавить"
                                 Name="ButtonAddEmployee" Click="ButtonAddEmployee_Click"/>
-                        <Button Width="200"
-                                Margin="5"
-                                HorizontalAlignment="Left"/>
+                        <Button 
+                            Width="50"
+                            Height="50"
+                            Margin="5"
+                            HorizontalAlignment="Left"
+                            Name="ButtonPositionRefresh" 
+                            Click="ButtonRefresh_Click">
+                            <materialDesign:PackIcon Kind="Refresh" />
+                        </Button>
                         <Button Width="200"
                                 Margin="5"
                                 HorizontalAlignment="Left"/>
@@ -41,18 +49,25 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-
+                    <DataGrid Margin="5" Name="DataGridPosition"></DataGrid>
                     <DockPanel Grid.Row="1">
                         <Button Width="200"
+                                Height="50"
                                 Margin="5"
                                 HorizontalAlignment="Left"
                                 Content="Добавить"
                                 Name="ButtonAddPosition" 
                                 Click="ButtonAddPosition_Click"/>
-                        <Button Width="200"
-                                Margin="5"
-                                HorizontalAlignment="Left"/>
-                        <Button Width="200"
+                        <Button 
+                             Width="50"
+                             Height="50"
+                             Margin="5"
+                             HorizontalAlignment="Left"
+                             Name="ButtonEmployeeRefresh" 
+                             Click="ButtonRefresh_Click">
+                            <materialDesign:PackIcon Kind="Refresh" />
+                        </Button>
+                            <Button Width="200"
                                 Margin="5"
                                 HorizontalAlignment="Left"/>
                     </DockPanel>
@@ -68,16 +83,24 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-
+                    <DataGrid Margin="5" Name="DataGridHotelRoom"></DataGrid>
                     <DockPanel Grid.Row="1">
-                        <Button Width="200"
+                        <Button 
+                            Width="200"
+                            Height="50"
                             Margin="5"
                             HorizontalAlignment="Left"
                             Content="Добавить"
                             Name="ButtonAddHotelRoom" Click="ButtonAddHotelRoom_Click"/>
-                        <Button Width="200"
+                        <Button 
+                            Width="50"
+                            Height="50"
                             Margin="5"
-                            HorizontalAlignment="Left"/>
+                            HorizontalAlignment="Left"
+                            Name="ButtonHotelNumberRefresh" 
+                            Click="ButtonRefresh_Click">
+                            <materialDesign:PackIcon Kind="Refresh" />
+                        </Button>
                         <Button Width="200"
                             Margin="5"
                             HorizontalAlignment="Left"/>

@@ -6,8 +6,78 @@
         xmlns:local="clr-namespace:BD_LAB2_PERSONAL"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddHotelRoomWindow" Height="450" Width="800">
+        Title="AddHotelRoomWindow" Height="550" Width="520">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="1.2*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox
+            Grid.Row="0"
+            Margin="5"
+            materialDesign:HintAssist.Hint="ID номера"
+            FontSize="25"
+            Name="TextBoxNumberId"/>
+
+        <TextBox
+            Grid.Row="1"
+            Margin="5"
+            materialDesign:HintAssist.Hint="Имя номера"
+            FontSize="25"
+            Name="TextBoxNumberName"/>
+
+        <TextBox
+            Grid.Row="2"
+            Margin="5"
+            materialDesign:HintAssist.Hint="Емкость"
+            FontSize="25"
+            Name="TextBoxCapacity"/>
+
+        <TextBox
+            Grid.Row="3"
+            Margin="5"
+            materialDesign:HintAssist.Hint="Описание"
+            FontSize="25"
+            Name="TextBoxDescription"/>
+
+        <TextBox
+            Grid.Row="4"
+            Margin="5"
+            materialDesign:HintAssist.Hint="Цена"
+            FontSize="25"
+            Name="TextBoxPrice"/>
+
+        <TextBox
+            Grid.Row="5"
+            Margin="5"
+            materialDesign:HintAssist.Hint="ID сотрудника"
+            FontSize="25"
+            Name="TextBoxEmplId"/>
+
+        <DockPanel Grid.Row="6">
+            <Button
+                Content="Добавить"
+                Margin="5"
+                HorizontalAlignment="Left"
+                MinHeight="50"
+                MinWidth="410"
+                Name="ButtonAdd" 
+                Click="ButtonAdd_Click"/>
+            <Button
+                MinHeight="50"
+                MinWidth="50"
+                Background="Red"
+                HorizontalAlignment="Left"
+                Margin="5"
+                Name="ButtonClose" Click="ButtonClose_Click">
+                <materialDesign:PackIcon Kind="Close" />
+            </Button>
+        </DockPanel>
     </Grid>
 </Window>

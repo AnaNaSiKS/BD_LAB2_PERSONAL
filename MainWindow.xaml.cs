@@ -33,12 +33,22 @@ namespace BD_LAB2_PERSONAL
 
         private void ButtonAddPosition_Click(object sender, RoutedEventArgs e)
         {
-
+            AddPositionWindow addPositionWindow = new AddPositionWindow();
+            addPositionWindow.Show();
         }
 
         private void ButtonAddHotelRoom_Click(object sender, RoutedEventArgs e)
         {
+            AddHotelRoomWindow addHotelRoomWindow = new AddHotelRoomWindow();
+            addHotelRoomWindow.Show();
+        }
 
+        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new HostelDataBaseContext();
+            DataGridPosition.ItemsSource = db.Positions.ToList();
+            DataGridEmloyees.ItemsSource = db.Employees.ToList();
+            DataGridHotelRoom.ItemsSource = db.HotelRooms.ToList();
         }
     }
 }
