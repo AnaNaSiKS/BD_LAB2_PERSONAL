@@ -26,20 +26,26 @@ namespace BD_LAB2_PERSONAL
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Employee employee = new Employee { 
-                SecondName = TextBoxSecondName.Text, 
-                FirstName = TextBoxFirstName.Text, 
-                LastName = TextBoxLastName.Text, 
-                EmplId = Convert.ToInt64(TextBoxEmplId.Text),
-                Address = TextBoxAddres.Text,
-                Gender = TextBoxGender.Text,
-                PositionsId = Convert.ToInt64(TextBoxPositionId.Text),
-                TelephoneNumber = TextBoxTelephoneNumber.Text,
-                PassportDetails = TextBoxPasportDetails.Text};
-
-            var db = new HostelDataBaseContext();
-            db.Employees.Add(employee);
-            db.SaveChanges();
+            try
+            {
+                Employee employee = new Employee
+                {
+                    SecondName = TextBoxSecondName.Text,
+                    FirstName = TextBoxFirstName.Text,
+                    LastName = TextBoxLastName.Text,
+                    EmplId = Convert.ToInt64(TextBoxEmplId.Text),
+                    Address = TextBoxAddres.Text,
+                    Gender = TextBoxGender.Text,
+                    PositionsId = Convert.ToInt64(TextBoxPositionId.Text),
+                    TelephoneNumber = TextBoxTelephoneNumber.Text,
+                    PassportDetails = TextBoxPasportDetails.Text,
+                    Birthday = TextBoxBirthday.Text
+                };
+                var db = new HostelDataBaseContext();
+                db.Employees.Add(employee);
+                db.SaveChanges();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)

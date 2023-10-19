@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BD_LAB2_PERSONAL"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1200">
     <Grid>
         <TabControl>
             <TabItem Header="Сотрудники">
@@ -16,30 +16,32 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid Margin="5" Name="DataGridEmloyees"></DataGrid>
+                    <DataGrid Margin="5" 
+                              Name="DataGridEmloyees" 
+                              IsReadOnly="True" 
+                              MouseLeftButtonUp="DataGridEmloyees_Click" 
+                              SelectionMode="Single"></DataGrid>
                     <DockPanel Grid.Row="1">
-                        <Button Width="200"
-                                Height="50"
+                        <Button Width="400"
+                                Height="80"
                                 Margin="5"
+                                FontSize="50"
                                 HorizontalAlignment="Left"
                                 Content="Добавить"
                                 Name="ButtonAddEmployee" Click="ButtonAddEmployee_Click"/>
                         <Button 
-                            Width="50"
-                            Height="50"
+                            Width="80"
+                            Height="80"
                             Margin="5"
                             HorizontalAlignment="Left"
-                            Name="ButtonPositionRefresh" 
+                            Name="ButtonEmloyeeRefresh" 
                             Click="ButtonRefresh_Click">
-                            <materialDesign:PackIcon Kind="Refresh" />
+                            <materialDesign:PackIcon Kind="Refresh" Width="50" Height="50" />
                         </Button>
                         <Button Width="200"
                                 Margin="5"
                                 HorizontalAlignment="Left"/>
                     </DockPanel>
-                    <DataGrid>
-                        
-                    </DataGrid>
                 </Grid>
             </TabItem>
 
@@ -49,31 +51,32 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <DataGrid Margin="5" Name="DataGridPosition"></DataGrid>
+                    <DataGrid Margin="5" 
+                              Name="DataGridPosition" 
+                              IsReadOnly="True" 
+                              MouseLeftButtonUp="DataGridPosition_Click" 
+                              SelectionMode="Single"></DataGrid>
                     <DockPanel Grid.Row="1">
-                        <Button Width="200"
-                                Height="50"
+                        <Button Width="400"
+                                Height="80"
                                 Margin="5"
                                 HorizontalAlignment="Left"
                                 Content="Добавить"
                                 Name="ButtonAddPosition" 
                                 Click="ButtonAddPosition_Click"/>
                         <Button 
-                             Width="50"
-                             Height="50"
+                             Width="80"
+                             Height="80"
                              Margin="5"
                              HorizontalAlignment="Left"
-                             Name="ButtonEmployeeRefresh" 
-                             Click="ButtonRefresh_Click">
-                            <materialDesign:PackIcon Kind="Refresh" />
+                             Name="ButtonPositionRefresh" 
+                             Click="ButtonRefresh_Click" >
+                            <materialDesign:PackIcon Kind="Refresh" Height="50" Width="50"/>
                         </Button>
-                            <Button Width="200"
+                        <Button Width="200"
                                 Margin="5"
                                 HorizontalAlignment="Left"/>
                     </DockPanel>
-                    <DataGrid>
-                        
-                    </DataGrid>
                 </Grid>
             </TabItem>
 
@@ -83,31 +86,32 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <DataGrid Margin="5" Name="DataGridHotelRoom"></DataGrid>
+                    <DataGrid Margin="5" 
+                              Name="DataGridHotelRoom" 
+                              IsReadOnly="True" 
+                              MouseLeftButtonUp="DataGridHotelRoom_Click" 
+                              SelectionMode="Single"></DataGrid>
                     <DockPanel Grid.Row="1">
                         <Button 
-                            Width="200"
-                            Height="50"
+                            Width="400"
+                            Height="80"
                             Margin="5"
                             HorizontalAlignment="Left"
                             Content="Добавить"
                             Name="ButtonAddHotelRoom" Click="ButtonAddHotelRoom_Click"/>
                         <Button 
-                            Width="50"
-                            Height="50"
+                            Width="80"
+                            Height="80"
                             Margin="5"
                             HorizontalAlignment="Left"
                             Name="ButtonHotelNumberRefresh" 
                             Click="ButtonRefresh_Click">
-                            <materialDesign:PackIcon Kind="Refresh" />
+                            <materialDesign:PackIcon Kind="Refresh" Height="50" Width="50"/>
                         </Button>
                         <Button Width="200"
                             Margin="5"
                             HorizontalAlignment="Left"/>
                     </DockPanel>
-                    <DataGrid>
-
-                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>

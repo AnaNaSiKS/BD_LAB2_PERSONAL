@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,22 +26,24 @@ namespace BD_LAB2_PERSONAL
             InitializeComponent();
         }
 
+        static void ShowWindow (Window window)
+        {
+            window.Show();
+        }
+
         private void ButtonAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
-            addEmployeeWindow.Show();
+            ShowWindow(new AddEmployeeWindow());
         }
 
         private void ButtonAddPosition_Click(object sender, RoutedEventArgs e)
         {
-            AddPositionWindow addPositionWindow = new AddPositionWindow();
-            addPositionWindow.Show();
+            ShowWindow(new AddPositionWindow());
         }
 
         private void ButtonAddHotelRoom_Click(object sender, RoutedEventArgs e)
         {
-            AddHotelRoomWindow addHotelRoomWindow = new AddHotelRoomWindow();
-            addHotelRoomWindow.Show();
+            ShowWindow(new AddHotelRoomWindow());
         }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
@@ -49,6 +52,24 @@ namespace BD_LAB2_PERSONAL
             DataGridPosition.ItemsSource = db.Positions.ToList();
             DataGridEmloyees.ItemsSource = db.Employees.ToList();
             DataGridHotelRoom.ItemsSource = db.HotelRooms.ToList();
+        }
+
+        private void DataGridEmloyees_Click(object sender, MouseButtonEventArgs e)
+        {
+            Employee employee = (Employee)DataGridEmloyees.Items[DataGridEmloyees.SelectedIndex];
+            ShowWindow(new ChangeEmployeeWindow(employee));
+        }
+
+        private void DataGridPosition_Click(object sender, MouseButtonEventArgs e)
+        {
+            Position position = (Position)DataGridPosition.Items[DataGridPosition.SelectedIndex];
+            ShowWindow(new ChangePositionWindow(position));
+        }
+
+        private void DataGridHotelRoom_Click(object sender, MouseButtonEventArgs e)
+        {
+            HotelRoom hotelRoom = (HotelRoom)DataGridHotelRoom.Items[DataGridHotelRoom.SelectedIndex];
+            ShowWindow(new ChangeHotelRoomWindow(hotelRoom));
         }
     }
 }
