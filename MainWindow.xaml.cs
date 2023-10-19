@@ -71,5 +71,75 @@ namespace BD_LAB2_PERSONAL
             HotelRoom hotelRoom = (HotelRoom)DataGridHotelRoom.Items[DataGridHotelRoom.SelectedIndex];
             ShowWindow(new ChangeHotelRoomWindow(hotelRoom));
         }
+
+        private void MenuItemCutEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Employee employee = (Employee)DataGridEmloyees.Items[DataGridEmloyees.SelectedIndex];
+                var db = new HostelDataBaseContext();
+
+                db.Employees.Remove(employee);
+                db.SaveChanges();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+        }
+
+        private void MenuItemCutHotelRoom_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HotelRoom hotelRoom = (HotelRoom)DataGridHotelRoom.Items[DataGridHotelRoom.SelectedIndex];
+                var db = new HostelDataBaseContext();
+
+                db.HotelRooms.Remove(hotelRoom);
+                db.SaveChanges();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+        }
+
+        private void MenuItemCutPosition_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Position position = (Position)DataGridPosition.Items[DataGridPosition.SelectedIndex];
+                var db = new HostelDataBaseContext();
+
+                db.Positions.Remove(position);
+                db.SaveChanges();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+        }
+
+        private void ButtonSelection_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new HostelDataBaseContext();
+
+            var employeesIdLess3 = db.Employees.Where(empl => empl.EmplId < 3);
+
+            foreach (var employee in employeesIdLess3)
+            {
+                MessageBox.Show(employee.FirstName);
+            }
+
+            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.Contains("D"));
+
+            foreach (var employee in employeesNameIncludeD)
+            {
+                MessageBox.Show(employee.FirstName);
+            }
+        }
+
+        private void ButtonSelectionConnection_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new HostelDataBaseContext();
+
+            var employeeConn = db.Employees.Join(db.HotelRooms, e => e.EmplId, h => h.EmplsId, (e, h) => new {Name = e.FirstName, Number = h.NumberName, Price = h.Price }).Where(empl => empl.Price > 100);
+
+            foreach (var employee in employeeConn)
+            {
+                MessageBox.Show(employee.Name+ "\n" + employee.Number + "\n" + employee.Price.ToString());
+            }
+        }
     }
 }
