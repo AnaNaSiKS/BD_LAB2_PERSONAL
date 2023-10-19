@@ -45,7 +45,8 @@
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Дата рождения"
             FontSize="25"
-            Name="TextBoxBirthday"/>
+            Name="TextBoxBirthday"
+            SelectedDateFormat="Short"/>
         <TextBox
             Grid.Row="5"
             materialDesign:HintAssist.Hint="Пол"

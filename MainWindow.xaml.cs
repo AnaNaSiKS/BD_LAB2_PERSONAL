@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
@@ -140,6 +142,22 @@ namespace BD_LAB2_PERSONAL
             {
                 MessageBox.Show(employee.Name+ "\n" + employee.Number + "\n" + employee.Price.ToString());
             }
+        }
+
+        private void CalculateAge_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new HostelDataBaseContext();
+
+            var startDate = DateTime.ParseExact("01.01.2022", "dd.MM.yyyy", CultureInfo.InvariantCulture);
+            var endDate = DateTime.ParseExact("31.12.2023", "dd.MM.yyyy", CultureInfo.InvariantCulture);
+
+            var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday,"dd.MM.yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday,"dd.MM.yyyy", CultureInfo.InvariantCulture) <= endDate);
+
+            foreach (var employee in empl) {
+                MessageBox.Show(employee.FirstName);
+            }
+
+
         }
     }
 }

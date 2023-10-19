@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BD_LAB2_PERSONAL"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1200">
+        Title="MainWindow" Height="700" Width="1600">
     <Grid>
         <TabControl>
             <TabItem Header="Сотрудники">
@@ -53,11 +53,15 @@
                                 Content="Выборка"
                                 Name="ButtonSelection" Click="ButtonSelection_Click"/>
                         <Button Height="80"
-                                Width="250"
+                                Width="400"
                                 HorizontalAlignment="Left"
                                 FontSize="50"
                                 Content="Объединение"
                                 Name="ButtonSelectionConnection" Click="ButtonSelectionConnection_Click"/>
+                        <Button
+                            Height="80"
+                            Content="Проверить даты"
+                            Name="CalculateAge" Click="CalculateAge_Click"/>
                     </DockPanel>
                 </Grid>
             </TabItem>
