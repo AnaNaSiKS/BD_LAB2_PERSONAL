@@ -124,7 +124,7 @@ namespace BD_LAB2_PERSONAL
                 MessageBox.Show(employee.FirstName);
             }
 
-            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.Contains("D"));
+            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.StartsWith("D"));
 
             foreach (var employee in employeesNameIncludeD)
             {
@@ -144,19 +144,20 @@ namespace BD_LAB2_PERSONAL
             }
         }
 
-        private void CalculateAge_Click(object sender, RoutedEventArgs e)
+        private void CheckDate_Click(object sender, RoutedEventArgs e)
         {
+
             var db = new HostelDataBaseContext();
 
             var startDate = DateTime.ParseExact("01.01.2022", "dd.MM.yyyy", CultureInfo.InvariantCulture);
             var endDate = DateTime.ParseExact("31.12.2023", "dd.MM.yyyy", CultureInfo.InvariantCulture);
 
-            var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday,"dd.MM.yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday,"dd.MM.yyyy", CultureInfo.InvariantCulture) <= endDate);
+            var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday, "dd.MM.yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday, "dd.MM.yyyy", CultureInfo.InvariantCulture) <= endDate);
 
-            foreach (var employee in empl) {
+            foreach (var employee in empl)
+            {
                 MessageBox.Show(employee.FirstName);
             }
-
 
         }
     }
