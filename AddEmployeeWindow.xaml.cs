@@ -39,7 +39,7 @@ namespace BD_LAB2_PERSONAL
                     PositionsId = Convert.ToInt64(TextBoxPositionId.Text),
                     TelephoneNumber = TextBoxTelephoneNumber.Text,
                     PassportDetails = TextBoxPasportDetails.Text,
-                    Birthday = TextBoxBirthday.Text
+                    Birthday = TextBoxBirthday.Text.Replace(".", "-")
                 };
                 var db = new HostelDataBaseContext();
                 db.Employees.Add(employee);
