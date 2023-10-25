@@ -54,14 +54,16 @@
                                 Name="ButtonSelection" Click="ButtonSelection_Click"/>
                         <Button Height="80"
                                 Width="400"
+                                Margin="5"
                                 HorizontalAlignment="Left"
                                 FontSize="50"
                                 Content="Объединение"
                                 Name="ButtonSelectionConnection" Click="ButtonSelectionConnection_Click"/>
                         <Button
                             Height="80"
+                            Margin="5"
                             Content="Проверить даты"
-                            Name="CalculateAge" Click="CalculateAge_Click"/>
+                            Name="CheckDate" Click="CheckDate_Click"/>
                     </DockPanel>
                 </Grid>
             </TabItem>
