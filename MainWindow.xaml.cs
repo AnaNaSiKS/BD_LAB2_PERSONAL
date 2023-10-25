@@ -58,18 +58,21 @@ namespace BD_LAB2_PERSONAL
 
         private void DataGridEmloyees_Click(object sender, MouseButtonEventArgs e)
         {
+            if (DataGridEmloyees.SelectedIndex == -1) { return; }
             Employee employee = (Employee)DataGridEmloyees.Items[DataGridEmloyees.SelectedIndex];
             ShowWindow(new ChangeEmployeeWindow(employee));
         }
 
         private void DataGridPosition_Click(object sender, MouseButtonEventArgs e)
         {
+            if (DataGridPosition.SelectedIndex == -1) { return; }
             Position position = (Position)DataGridPosition.Items[DataGridPosition.SelectedIndex];
             ShowWindow(new ChangePositionWindow(position));
         }
 
         private void DataGridHotelRoom_Click(object sender, MouseButtonEventArgs e)
         {
+            if (DataGridHotelRoom.SelectedIndex == -1) { return; }
             HotelRoom hotelRoom = (HotelRoom)DataGridHotelRoom.Items[DataGridHotelRoom.SelectedIndex];
             ShowWindow(new ChangeHotelRoomWindow(hotelRoom));
         }
@@ -121,14 +124,14 @@ namespace BD_LAB2_PERSONAL
 
             foreach (var employee in employeesIdLess3)
             {
-                MessageBox.Show(employee.FirstName);
+                MessageBox.Show($"Код сотрудника меньше 3 {employee.FirstName}");
             }
 
-            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.StartsWith("D"));
+            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.StartsWith("Д"));
 
             foreach (var employee in employeesNameIncludeD)
             {
-                MessageBox.Show(employee.FirstName);
+                MessageBox.Show($"Имя начинается с Д {employee.FirstName}");
             }
         }
 
@@ -149,16 +152,25 @@ namespace BD_LAB2_PERSONAL
 
             var db = new HostelDataBaseContext();
 
-            var startDate = DateTime.ParseExact("01-01-2022", "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            var endDate = DateTime.ParseExact("31-12-2023", "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var startDate = DateTime.ParseExact("01-01-2000", "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var endDate = DateTime.ParseExact("31-12-2002", "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
             var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) <= endDate);
 
             foreach (var employee in empl)
             {
-                MessageBox.Show(employee.FirstName);
+                MessageBox.Show(employee.SecondName + " " + employee.FirstName + " " + employee.Birthday);
             }
 
+        }
+
+        private void CheckStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new HostelDataBaseContext();
+
+            var avgSalary = db.Positions.Average(p => p.Salary);
+
+            MessageBox.Show($"Средний оклад = {avgSalary}");
         }
     }
 }

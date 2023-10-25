@@ -34,6 +34,7 @@ namespace BD_LAB2_PERSONAL
                 var db = new HostelDataBaseContext();
 
                 HotelRoom? changeHotelRoom = db.HotelRooms.FirstOrDefault(hotelRoom => hotelRoom.NumberId == inputHotelRoom.NumberId);
+
                 if (changeHotelRoom != null)
                 {
                     changeHotelRoom.NumberName = TextBoxNumberName.Text;

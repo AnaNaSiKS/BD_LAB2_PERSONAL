@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:BD_LAB2_PERSONAL"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ChangeHotelRoomWindow" Height="550" Width="520">
+        Title="ChangeHotelRoomWindow" Height="500" Width="520">
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -21,21 +20,13 @@
         <TextBox
             Grid.Row="0"
             Margin="5"
-            materialDesign:HintAssist.Hint="ID номера"
-            FontSize="25"
-            Name="TextBoxNumberId"
-            Text="{Binding Path= NumberId}"/>
-
-        <TextBox
-            Grid.Row="1"
-            Margin="5"
             materialDesign:HintAssist.Hint="Имя номера"
             FontSize="25"
             Name="TextBoxNumberName"
             Text="{Binding Path= NumberName}"/>
 
         <TextBox
-            Grid.Row="2"
+            Grid.Row="1"
             Margin="5"
             materialDesign:HintAssist.Hint="Емкость"
             FontSize="25"
@@ -43,7 +34,7 @@
             Text="{Binding Path= Capacity}"/>
 
         <TextBox
-            Grid.Row="3"
+            Grid.Row="2"
             Margin="5"
             materialDesign:HintAssist.Hint="Описание"
             FontSize="25"
@@ -51,7 +42,7 @@
             Text="{Binding Path= Description}"/>
 
         <TextBox
-            Grid.Row="4"
+            Grid.Row="3"
             Margin="5"
             materialDesign:HintAssist.Hint="Цена"
             FontSize="25"
@@ -59,14 +50,14 @@
             Text="{Binding Path= Price}"/>
 
         <TextBox
-            Grid.Row="5"
+            Grid.Row="4"
             Margin="5"
             materialDesign:HintAssist.Hint="ID сотрудника"
             FontSize="25"
             Name="TextBoxEmplId"
             Text="{Binding Path= EmplsId}"/>
 
-        <DockPanel Grid.Row="6">
+        <DockPanel Grid.Row="5">
             <Button
                 Content="Изменить"
                 Margin="5"

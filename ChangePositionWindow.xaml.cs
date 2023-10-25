@@ -34,16 +34,17 @@ namespace BD_LAB2_PERSONAL
                 var db = new HostelDataBaseContext();
 
                 Position? changeHotelRoom = db.Positions.FirstOrDefault(position => position.PositionId == inputPosition.PositionId);
+
                 if (changeHotelRoom != null)
                 {
                     changeHotelRoom.PositionName = TextBoxName.Text;
-                    changeHotelRoom.Salary = Convert.ToInt32(TextBoxSalary.Text);
+                    changeHotelRoom.Salary = Convert.ToDouble(TextBoxSalary.Text);
                     changeHotelRoom.Duties = TextBoxDuties.Text;
                     changeHotelRoom.Requirements = TextBoxRequirments.Text;
 
                     db.SaveChanges();
                 }
-                else MessageBox.Show("Object not found");
+                else MessageBox.Show("Объект не найден/Нельзя изменить Код должности");
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }

@@ -63,6 +63,7 @@
                             Height="80"
                             Margin="5"
                             Content="Проверить даты"
+                            FontSize="50"
                             Name="CheckDate" Click="CheckDate_Click"/>
                     </DockPanel>
                 </Grid>
@@ -91,6 +92,7 @@
                         <Button Width="400"
                                 Height="80"
                                 Margin="5"
+                                FontSize="50"
                                 HorizontalAlignment="Left"
                                 Content="Добавить"
                                 Name="ButtonAddPosition" 
@@ -104,9 +106,12 @@
                              Click="ButtonRefresh_Click" >
                             <materialDesign:PackIcon Kind="Refresh" Height="50" Width="50"/>
                         </Button>
-                        <Button Width="200"
-                                Margin="5"
-                                HorizontalAlignment="Left"/>
+                        <Button
+                            Height="80"
+                            Margin="5"
+                            Content="Статистические функции"
+                            FontSize="50"
+                            Name="CheckStatistic" Click="CheckStatistic_Click"/>
                     </DockPanel>
                 </Grid>
             </TabItem>

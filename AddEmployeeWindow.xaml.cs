@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,29 @@ namespace BD_LAB2_PERSONAL
         public AddEmployeeWindow()
         {
             InitializeComponent();
+            TextBoxBirthday.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddYears(-18), new DateTime(9999, 12, 31)));
+            TextBoxBirthday.BlackoutDates.Add(new CalendarDateRange(new DateTime(1, 1, 1), DateTime.Today.AddYears(-110)));
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxFirstName.Text)) { MessageBox.Show("Введите Имя"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxSecondName.Text)) { MessageBox.Show("Введите Фамилию"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxLastName.Text)) { MessageBox.Show("Введите Отчество"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxAddres.Text)) { MessageBox.Show("Введите Адрес"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxGender.Text)) { MessageBox.Show("Введите пол"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxTelephoneNumber.Text)) { MessageBox.Show("Введите номер"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxPasportDetails.Text)) { MessageBox.Show("Введите паспортные данные"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxBirthday.Text)) { MessageBox.Show("Введите дату рождения"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxEmplId.Text)) { MessageBox.Show("Введите код сотрудника"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxPositionId.Text)) { MessageBox.Show("Введите код должности"); return; }
+            if (TextBoxGender.SelectedItem == null) { MessageBox.Show("Поле пол не выбрано"); return; }
+            if (!int.TryParse(TextBoxEmplId.Text, out _)) { MessageBox.Show("Неверный формат Кода сотрудника"); return; }
+            if (!int.TryParse(TextBoxPositionId.Text, out _)) { MessageBox.Show("Неверный фомат номера должности"); return; }
+            if (!DateTime.TryParse(TextBoxBirthday.Text, out _)) { MessageBox.Show("Неверный фомат даты"); return; }
+            if (TextBoxTelephoneNumber.Text.Length != 11) { MessageBox.Show("Неверный формат номера телефона"); return; }
+
+
             try
             {
                 Employee employee = new Employee

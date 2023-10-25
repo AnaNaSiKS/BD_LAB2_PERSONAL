@@ -30,23 +30,37 @@ namespace BD_LAB2_PERSONAL
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxFirstName.Text)) { MessageBox.Show("Введите Имя"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxSecondName.Text)) { MessageBox.Show("Введите Фамилию"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxLastName.Text)) { MessageBox.Show("Введите Отчество"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxAddres.Text)) { MessageBox.Show("Введите Адрес"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxGender.Text)) { MessageBox.Show("Введите пол"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxTelephoneNumber.Text)) { MessageBox.Show("Введите номер"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxPasportDetails.Text)) { MessageBox.Show("Введите паспортные данные"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxBirthday.Text)) { MessageBox.Show("Введите дату рождения"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxPositionId.Text)) { MessageBox.Show("Введите код должности"); return; }
+            if (TextBoxGender.SelectedItem == null) { MessageBox.Show("Поле пол не выбрано"); return; }
+            if (!int.TryParse(TextBoxPositionId.Text, out _)) { MessageBox.Show("Неверный фомат номера должности"); return; }
+            if (!DateTime.TryParse(TextBoxBirthday.Text, out _)) { MessageBox.Show("Неверный фомат даты"); return; }
+            if (TextBoxTelephoneNumber.Text.Length != 11) { MessageBox.Show("Неверный формат номера телефона"); return; }
+
             try
             {
                 var db = new HostelDataBaseContext();
 
                 Employee? changeEmployee = db.Employees.FirstOrDefault(employee => employee.EmplId == inputEmployee.EmplId);
+
                 if (changeEmployee != null)
                 {
                     changeEmployee.SecondName = TextBoxSecondName.Text;
                     changeEmployee.FirstName = TextBoxFirstName.Text;
                     changeEmployee.LastName = TextBoxLastName.Text;
-                    changeEmployee.EmplId = Convert.ToInt64(TextBoxEmplId.Text);
                     changeEmployee.Address = TextBoxAddres.Text;
                     changeEmployee.Gender = TextBoxGender.Text;
                     changeEmployee.PositionsId = Convert.ToInt64(TextBoxPositionId.Text);
                     changeEmployee.TelephoneNumber = TextBoxTelephoneNumber.Text;
                     changeEmployee.PassportDetails = TextBoxPasportDetails.Text;
-                    changeEmployee.Birthday = TextBoxBirthday.Text;
+                    changeEmployee.Birthday = TextBoxBirthday.Text.Replace(".", "-");
 
                     db.SaveChanges();
                 }

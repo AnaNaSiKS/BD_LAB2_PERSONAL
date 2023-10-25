@@ -23,13 +23,15 @@ public partial class HostelDataBaseContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source= C:\\Users\\kanta\\Downloads\\HostelDataBase.db");
+        => optionsBuilder.UseSqlite("Data source = C:\\Users\\kanta\\БД\\HostelDataBase.db");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.EmplId);
+
+            entity.HasIndex(e => e.EmplId, "IX_Employees_emplId").IsUnique();
 
             entity.Property(e => e.EmplId).HasColumnName("emplId");
             entity.Property(e => e.Address).HasColumnName("address");
@@ -51,6 +53,8 @@ public partial class HostelDataBaseContext : DbContext
         {
             entity.HasKey(e => e.NumberId);
 
+            entity.HasIndex(e => e.NumberId, "IX_HotelRooms_numberId").IsUnique();
+
             entity.Property(e => e.NumberId).HasColumnName("numberId");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
             entity.Property(e => e.Description).HasColumnName("description");
@@ -63,6 +67,8 @@ public partial class HostelDataBaseContext : DbContext
 
         modelBuilder.Entity<Position>(entity =>
         {
+            entity.HasIndex(e => e.PositionId, "IX_Positions_positionId").IsUnique();
+
             entity.Property(e => e.PositionId)
                 .ValueGeneratedNever()
                 .HasColumnName("positionId");
