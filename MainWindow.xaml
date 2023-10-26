@@ -112,6 +112,9 @@
                             Content="Статистические функции"
                             FontSize="50"
                             Name="CheckStatistic" Click="CheckStatistic_Click"/>
+                        <TextBox
+                            Height="80"
+                            Name="TextBoxRequestStatistic"/>
                     </DockPanel>
                 </Grid>
             </TabItem>

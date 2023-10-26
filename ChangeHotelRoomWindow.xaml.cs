@@ -29,6 +29,15 @@ namespace BD_LAB2_PERSONAL
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxNumberName.Text)) { MessageBox.Show("Поле название помера не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxCapacity.Text)) { MessageBox.Show("Поле вместимости не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxDescription.Text)) { MessageBox.Show("Поле описание не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxPrice.Text)) { MessageBox.Show("Поле цены не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxEmplId.Text)) { MessageBox.Show("Поле кода сотрудника не введено"); return; }
+            if (!int.TryParse(TextBoxEmplId.Text, out _)) { MessageBox.Show("Неверный формат кода сотрудника"); return; }
+            if (!int.TryParse(TextBoxCapacity.Text, out _)) { MessageBox.Show("Неверный формат вместимости"); return; }
+            if (!double.TryParse(TextBoxPrice.Text, out _)) { MessageBox.Show("Неверный формат цены"); return; }
+
             try
             {
                 var db = new HostelDataBaseContext();

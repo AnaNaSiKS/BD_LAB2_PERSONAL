@@ -44,6 +44,10 @@ namespace BD_LAB2_PERSONAL
             if (!int.TryParse(TextBoxPositionId.Text, out _)) { MessageBox.Show("Неверный фомат номера должности"); return; }
             if (!DateTime.TryParse(TextBoxBirthday.Text, out _)) { MessageBox.Show("Неверный фомат даты"); return; }
             if (TextBoxTelephoneNumber.Text.Length != 11) { MessageBox.Show("Неверный формат номера телефона"); return; }
+            foreach (char symbol in TextBoxTelephoneNumber.Text)
+            {
+                if (char.IsLetter(symbol)) { MessageBox.Show("Неверный формат номера"); return; }
+            }
 
 
             try

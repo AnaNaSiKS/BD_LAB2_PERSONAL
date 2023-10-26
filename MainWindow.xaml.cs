@@ -120,31 +120,26 @@ namespace BD_LAB2_PERSONAL
         {
             var db = new HostelDataBaseContext();
 
-            var employeesIdLess3 = db.Employees.Where(empl => empl.EmplId < 3);
+            var employeesIdLess3 = db.Employees.Where(empl => empl.Gender == "Мужской").ToList();
 
-            foreach (var employee in employeesIdLess3)
-            {
-                MessageBox.Show($"Код сотрудника меньше 3 {employee.FirstName}");
-            }
+            ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeesIdLess3);
+            showResultRequestDataGrid.Show();
 
-            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.StartsWith("Д"));
+            var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.StartsWith("Д")).ToList();
 
-            foreach (var employee in employeesNameIncludeD)
-            {
-                MessageBox.Show($"Имя начинается с Д {employee.FirstName}");
-            }
+            ShowResultRequestDataGrid showResultRequestDataGrid2 = new ShowResultRequestDataGrid(employeesNameIncludeD);
+            showResultRequestDataGrid2.Show();
         }
 
         private void ButtonSelectionConnection_Click(object sender, RoutedEventArgs e)
         {
+            List<string> result = new List<string>();
             var db = new HostelDataBaseContext();
 
-            var employeeConn = db.Employees.Join(db.HotelRooms, e => e.EmplId, h => h.EmplsId, (e, h) => new {Name = e.FirstName, Number = h.NumberName, Price = h.Price }).Where(empl => empl.Price > 100);
+            var employeeConn = db.Employees.Join(db.HotelRooms, e => e.EmplId, h => h.EmplsId, (e, h) => new {Name = e.FirstName, Number = h.NumberName, Price = h.Price }).Where(empl => empl.Price > 100).Select(empl => (dynamic)empl).ToList();
 
-            foreach (var employee in employeeConn)
-            {
-                MessageBox.Show(employee.Name+ "\n" + employee.Number + "\n" + employee.Price.ToString());
-            }
+            ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeeConn);
+            showResultRequestDataGrid.Show();
         }
 
         private void CheckDate_Click(object sender, RoutedEventArgs e)
@@ -155,22 +150,23 @@ namespace BD_LAB2_PERSONAL
             var startDate = DateTime.ParseExact("01-01-2000", "dd-MM-yyyy", CultureInfo.InvariantCulture);
             var endDate = DateTime.ParseExact("31-12-2002", "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
-            var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) <= endDate);
+            var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) <= endDate).ToList();
 
-            foreach (var employee in empl)
-            {
-                MessageBox.Show(employee.SecondName + " " + employee.FirstName + " " + employee.Birthday);
-            }
+            ShowResultRequestDataGrid showResultRequestDataGrid2 = new ShowResultRequestDataGrid(empl);
+            showResultRequestDataGrid2.Show();
 
         }
 
         private void CheckStatistic_Click(object sender, RoutedEventArgs e)
         {
+            List<string> result = new List<string>();
             var db = new HostelDataBaseContext();
-
-            var avgSalary = db.Positions.Average(p => p.Salary);
-
-            MessageBox.Show($"Средний оклад = {avgSalary}");
+            try
+            {
+                var avgSalary = db.Positions.Where(p => p.PositionName == TextBoxRequestStatistic.Text).Average(p => p.Salary);
+                MessageBox.Show($"Средняя зарплата {TextBoxRequestStatistic.Text} = {avgSalary}");
+            }
+            catch (Exception ex) { MessageBox.Show("Не удалось найти должность в БД"); }
         }
     }
 }

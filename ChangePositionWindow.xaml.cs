@@ -29,6 +29,12 @@ namespace BD_LAB2_PERSONAL
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxName.Text)) { MessageBox.Show("Поле Название должности не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxSalary.Text)) { MessageBox.Show("Поле оклада не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxDuties.Text)) { MessageBox.Show("Поле обязанностей не введено"); return; }
+            if (string.IsNullOrWhiteSpace(TextBoxRequirments.Text)) { MessageBox.Show("Поле требований не введено"); return; }
+            if (!int.TryParse(TextBoxSalary.Text, out _)) { MessageBox.Show("Неверный фомат оклада"); return; }
+
             try
             {
                 var db = new HostelDataBaseContext();
