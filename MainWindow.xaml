@@ -114,6 +114,7 @@
                             Name="CheckStatistic" Click="CheckStatistic_Click"/>
                         <TextBox
                             Height="80"
+                            FontSize="35"
                             Name="TextBoxRequestStatistic"/>
                     </DockPanel>
                 </Grid>

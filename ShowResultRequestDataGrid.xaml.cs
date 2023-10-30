@@ -20,30 +20,36 @@ namespace BD_LAB2_PERSONAL
     public partial class ShowResultRequestDataGrid : Window
     {
 
-        public ShowResultRequestDataGrid(List<Employee> employee)
+        public ShowResultRequestDataGrid(List<Employee> employee, string name)
         {
             InitializeComponent();
 
+            this.Title = name;
             DataGrid.ItemsSource = employee;
         }
 
-        public ShowResultRequestDataGrid(List<Position> position)
+        public ShowResultRequestDataGrid(List<Position> position, string name)
         {
             InitializeComponent();
 
+            this.Title = name;
             DataGrid.ItemsSource = position;
         }
 
 
-        public ShowResultRequestDataGrid(List<HotelRoom> position)
+        public ShowResultRequestDataGrid(List<HotelRoom> position, string name)
         {
             InitializeComponent();
+
+            this.Title = name;
             DataGrid.ItemsSource = position;
         }
 
-        public ShowResultRequestDataGrid(List<dynamic> position)
+        public ShowResultRequestDataGrid(List<dynamic> position, string name)
         {
             InitializeComponent();
+
+            this.Title = name;
             DataGrid.ItemsSource = position;
         }
 

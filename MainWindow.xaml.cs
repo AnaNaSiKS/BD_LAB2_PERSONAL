@@ -120,14 +120,14 @@ namespace BD_LAB2_PERSONAL
         {
             var db = new HostelDataBaseContext();
 
-            var employeesIdLess3 = db.Employees.Where(empl => empl.Gender == "Мужской").ToList();
+            var employeesIdLess3 = db.Employees.Where(empl => empl.Gender == "Мужской" && empl.Address == "ул Д").ToList();
 
-            ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeesIdLess3);
+            ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeesIdLess3,"Man + Address");
             showResultRequestDataGrid.Show();
 
             var employeesNameIncludeD = db.Employees.Where(empl => empl.FirstName.StartsWith("Д")).ToList();
 
-            ShowResultRequestDataGrid showResultRequestDataGrid2 = new ShowResultRequestDataGrid(employeesNameIncludeD);
+            ShowResultRequestDataGrid showResultRequestDataGrid2 = new ShowResultRequestDataGrid(employeesNameIncludeD,"StartsWithD");
             showResultRequestDataGrid2.Show();
         }
 
@@ -138,7 +138,7 @@ namespace BD_LAB2_PERSONAL
 
             var employeeConn = db.Employees.Join(db.HotelRooms, e => e.EmplId, h => h.EmplsId, (e, h) => new {Name = e.FirstName, Number = h.NumberName, Price = h.Price }).Where(empl => empl.Price > 100).Select(empl => (dynamic)empl).ToList();
 
-            ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeeConn);
+            ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeeConn,"Connection");
             showResultRequestDataGrid.Show();
         }
 
@@ -152,7 +152,7 @@ namespace BD_LAB2_PERSONAL
 
             var empl = db.Employees.ToList().Where(e => DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) >= startDate && DateTime.ParseExact(e.Birthday,"dd-MM-yyyy", CultureInfo.InvariantCulture) <= endDate).ToList();
 
-            ShowResultRequestDataGrid showResultRequestDataGrid2 = new ShowResultRequestDataGrid(empl);
+            ShowResultRequestDataGrid showResultRequestDataGrid2 = new ShowResultRequestDataGrid(empl,"Date");
             showResultRequestDataGrid2.Show();
 
         }
