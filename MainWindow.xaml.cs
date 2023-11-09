@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -81,11 +82,7 @@ namespace BD_LAB2_PERSONAL
         {
             try
             {
-                Employee employee = (Employee)DataGridEmloyees.Items[DataGridEmloyees.SelectedIndex];
-                var db = new HostelDataBaseContext();
-
-                db.Employees.Remove(employee);
-                db.SaveChanges();
+                
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }
@@ -120,7 +117,7 @@ namespace BD_LAB2_PERSONAL
         {
             var db = new HostelDataBaseContext();
 
-            var employeesIdLess3 = db.Employees.Where(empl => empl.Gender == "Мужской" && empl.Address == "ул Д").ToList();
+            var employeesIdLess3 = db.Employees.Where(empl => empl.Gender == "Женский" && empl.Address == "Щербаков переулок, 17А").ToList();
 
             ShowResultRequestDataGrid showResultRequestDataGrid = new ShowResultRequestDataGrid(employeesIdLess3,"Man + Address");
             showResultRequestDataGrid.Show();
@@ -167,6 +164,17 @@ namespace BD_LAB2_PERSONAL
                 MessageBox.Show($"Средняя зарплата {TextBoxRequestStatistic.Text} = {avgSalary}");
             }
             catch (Exception ex) { MessageBox.Show("Не удалось найти должность в БД"); }
+        }
+
+        private void ConvertToJson_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new HostelDataBaseContext();
+
+            List<Employee> employees = db.Employees.ToList();
+
+            var json = JsonConvert.SerializeObject(employees);
+            ShowJson showJson = new ShowJson(json);
+            showJson.Show();
         }
     }
 }

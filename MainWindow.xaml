@@ -62,9 +62,15 @@
                         <Button
                             Height="80"
                             Margin="5"
-                            Content="Проверить даты"
+                            Content="Даты"
                             FontSize="50"
                             Name="CheckDate" Click="CheckDate_Click"/>
+                        <Button
+                            Height="80"
+                            Margin="5"
+                            Content="JSON"
+                            FontSize="50"
+                            Name="ConvertToJson" Click="ConvertToJson_Click"/>
                     </DockPanel>
                 </Grid>
             </TabItem>
